@@ -7,10 +7,21 @@ namespace Checkers.View
 {
     public static class PositionHelper
     {
-        public static GridPos WorldToGridPos( Vector3 worldPos)
+        public static GridPos WorldToGridPos( Vector3 worldPos, BoardModel board)
         {
-            //TODO add logic
-            return new GridPos(0, 0);    
+            float x = worldPos.x + (board.Row / 2);
+            float y = worldPos.z + (board.Column / 2);
+
+            return new GridPos((int)x, (int)y);    
+        }
+
+        public static Vector3 GridToWorldPos( GridPos gridPos, BoardModel board )
+        {
+            float x = gridPos.X - (board.Row / 2) + 0.5f;
+            float y = 0;
+            float z = gridPos.Y - (board.Column / 2) + 0.5f;
+
+            return new Vector3(x, y, z);
         }
     }
 }

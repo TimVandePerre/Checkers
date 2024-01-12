@@ -2,7 +2,8 @@
     "name": "CheckersView",
     "rootNamespace": "",
     "references": [
-        "GUID:2b4b1a9afa10cd84ab23f4c454f01ecf"
+        "GUID:2b4b1a9afa10cd84ab23f4c454f01ecf",
+        "GUID:3b7e565ff65970c46972ca5606ae997d"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
