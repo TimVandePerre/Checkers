@@ -1,0 +1,16 @@
+{
+    "name": "CheckersView",
+    "rootNamespace": "",
+    "references": [
+        "GUID:2b4b1a9afa10cd84ab23f4c454f01ecf"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
