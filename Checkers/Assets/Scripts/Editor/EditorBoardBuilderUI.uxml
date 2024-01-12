@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Label tabindex="-1" text="BoardBuilder" parse-escape-sequences="true" display-tooltip-when-elided="true" name="lblTitle" style="align-items: center; align-self: center;" />
+    <ui:SliderInt picking-mode="Ignore" label="Rows" value="8" high-value="20" name="SldIRow" low-value="1" show-input-field="true" binding-path="Rows" />
+    <ui:SliderInt picking-mode="Ignore" label="Columns" value="8" high-value="20" name="SldIColumns" low-value="1" show-input-field="true" binding-path="Columns" />
+    <uie:ObjectField label="ParentObject" name="ObjfParent" binding-path="ParentObject" />
+    <uie:ObjectField label="White Tile" name="ObjfWhite" binding-path="WhiteTile" />
+    <uie:ObjectField label="Black Tile" name="ObjfBlack" binding-path="BlackTile" />
+    <ui:Button text="Generate board" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BGenerate" />
+    <ui:Button text="Clear board" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BClear" />
+</ui:UXML>

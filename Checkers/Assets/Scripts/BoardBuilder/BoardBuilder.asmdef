@@ -1,0 +1,16 @@
+{
+    "name": "BoardBuilder",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c6023a4f0ba6e20478bed46dfe83ebcd"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
