@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1202549498657420001, guid: 8ed9c0a243038f648aaf81851343807f, type: 3}
       propertyPath: m_Name
-      value: Tile_Base Variant
+      value: Tile_White
       objectReference: {fileID: 0}
     - target: {fileID: 1557056523395911810, guid: 8ed9c0a243038f648aaf81851343807f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5524299377737291250, guid: 8ed9c0a243038f648aaf81851343807f, type: 3}
+      propertyPath: _default
+      value: 
+      objectReference: {fileID: 2100000, guid: c2c998fcfc9915c45b1600c3e5ebdb1e, type: 2}
     - target: {fileID: 6526632742389940525, guid: 8ed9c0a243038f648aaf81851343807f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

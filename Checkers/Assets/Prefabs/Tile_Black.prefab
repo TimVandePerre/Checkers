@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 145450400617793229, guid: 22f7693d1e7af28468df3e664280fb9f, type: 3}
+      propertyPath: _default
+      value: 
+      objectReference: {fileID: 2100000, guid: fac166d2912fb4e408c9840c4af582b0, type: 2}
     - target: {fileID: 1458531568768537106, guid: 22f7693d1e7af28468df3e664280fb9f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -54,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6782050745865658846, guid: 22f7693d1e7af28468df3e664280fb9f, type: 3}
       propertyPath: m_Name
-      value: Tile_Base Variant
+      value: Tile_Black
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

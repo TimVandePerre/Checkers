@@ -1,18 +1,41 @@
+using Checkers.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class TileView : MonoBehaviour
+namespace Checkers.View
 {
-    // Start is called before the first frame update
-    void Start()
+    public class TileView : MonoBehaviour, IPointerClickHandler
     {
-        
-    }
+        [SerializeField]private Renderer _renderer;
+        [SerializeField] private Material _default, _highlight;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+        public TileModel TileModel { get; private set; }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            TileModel.TileClicked();
+        }
+
+        public void SetModel(TileModel tile)
+        {
+            TileModel = tile;
+            tile.ColorChanged += Tile_ColorChanged;
+        }
+
+        private void Tile_ColorChanged(object sender, ColorEventArgs e)
+        {
+            switch (e.Color)
+            {
+                case TileColor.Base:
+                    _renderer.sharedMaterial = _default;
+                    break;
+                case TileColor.Highlight:
+                    _renderer.sharedMaterial = _highlight;
+                    break;
+            }
+        }
     }
 }
