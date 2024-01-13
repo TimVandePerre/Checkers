@@ -1,13 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Checkers.Model
 {
     public class BoardModel
     {
+
         public int Row { get; }
         public int Column { get; }
 
-        public Dictionary<GridPos,TileModel> Tile = new Dictionary<GridPos,TileModel>();
+        public Dictionary<GridPos,TileModel> Tiles = new Dictionary<GridPos,TileModel>();
+        public Dictionary<GridPos, PieceModel> Pieces = new Dictionary<GridPos, PieceModel>();
 
         public BoardModel(int row, int column)
         {
@@ -20,13 +24,36 @@ namespace Checkers.Model
             TileModel tile = new TileModel(pos);
             tile.PositionClicked += Tile_PositionClicked;
 
-            Tile.Add(pos, tile);
+            Tiles.Add(pos, tile);
 
             return tile;
         }
 
+        public TileModel GetTileOnPos(GridPos pos)
+        {
+            TileModel tile = Tiles.GetValueOrDefault(pos);
+            return tile;
+        }
+
+        public PieceModel AddPiece(GridPos pos, PieceColor pieceColor, PieceType pieceType)
+        {
+            PieceModel piece = new PieceModel(pos, pieceColor, pieceType);
+            //TODO: sub to all events.
+
+            Pieces.Add(pos, piece);
+            return piece;
+        }
+
+        public PieceModel GetPieceOnPos(GridPos pos)
+        {
+            PieceModel piece = Pieces.GetValueOrDefault(pos);
+            return piece;
+        }
+
         private void Tile_PositionClicked(object sender, System.EventArgs e)
         {
+            //TODO: add logic for when Tile is clicked.
+            //Temp
             TileModel tile = (TileModel)sender;
             tile.Color = TileColor.Highlight;
         }

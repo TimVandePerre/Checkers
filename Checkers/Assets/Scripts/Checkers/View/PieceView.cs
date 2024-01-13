@@ -6,16 +6,14 @@ namespace Checkers.Model
 {
     public class PieceView : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private Renderer _renderer;
+        [SerializeField] private Material _highlightMaterial;
+
+        public PieceModel PieceModel { get; private set; }
+        public void SetModel(PieceModel model)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            PieceModel = model;
+            //TODO: subscribe to the events
         }
     }
 }

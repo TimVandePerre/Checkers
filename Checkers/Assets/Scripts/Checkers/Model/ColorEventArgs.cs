@@ -11,4 +11,14 @@ namespace Checkers.Model
             Color = color;
         }
     }
+
+    public class PieceEventArgs : EventArgs
+    {
+        public PieceModel Piece { get; }
+
+        public PieceEventArgs(PieceModel model)
+        {
+            Piece = model;   
+        }
+    }
 }

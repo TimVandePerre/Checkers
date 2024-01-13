@@ -10,6 +10,8 @@ namespace Checkers.View
         public int _columns;
         public BoardModel _boardModel { get; private set; }
 
+        [SerializeField] GameObject _pawnPiece;
+
         private void Awake()
         {
             _rows = gameObject.GetComponent<Board_Builder>().Rows;
@@ -17,6 +19,7 @@ namespace Checkers.View
 
             CreateBoardModel();
             SetBoardTiles();
+            SetBoardPieces();
         }
 
         public void CreateBoardModel()
@@ -36,6 +39,18 @@ namespace Checkers.View
 
                 tileView.SetModel(tileModel);
             }
+        }
+
+        private void SetBoardPieces()
+        {
+            //TODO: add all pieces based on the Rows and Collumns
+            GridPos gridPos = new GridPos(0, 0);
+
+            PieceModel pieceModel = _boardModel.AddPiece(gridPos, PieceColor.Dark, PieceType.Pawn);
+
+            GameObject piece = GameObject.Instantiate(_pawnPiece);
+            piece.transform.position = PositionHelper.GridToWorldPos(gridPos, _boardModel);
+            piece.GetComponent<PieceView>().SetModel(pieceModel);
         }
     }
 }

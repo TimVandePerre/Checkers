@@ -4,7 +4,7 @@ namespace Checkers.Model
 {
     public class TileModel
     {
-        public event EventHandler<EventArgs> PositionClicked;
+        public event EventHandler<System.EventArgs> PositionClicked;
         public event EventHandler<ColorEventArgs> ColorChanged;
         public TileColor Color 
         { 
@@ -30,7 +30,7 @@ namespace Checkers.Model
 
         public void TileClicked()
         {
-            PositionClicked?.Invoke(this, EventArgs.Empty);
+            PositionClicked?.Invoke(this, System.EventArgs.Empty);
         }
     }
 }
