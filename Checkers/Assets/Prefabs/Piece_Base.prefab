@@ -129,4 +129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 218129367350180993}
-  _highlightMaterial: {fileID: 0}
+  _highlightMaterial: {fileID: 2100000, guid: 18d8d307d64d2dd4ea7ccdd09e10dabd, type: 2}
+  Color: 0
+  Type: 0

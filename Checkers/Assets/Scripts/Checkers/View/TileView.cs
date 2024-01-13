@@ -25,7 +25,7 @@ namespace Checkers.View
             tile.ColorChanged += Tile_ColorChanged;
         }
 
-        private void Tile_ColorChanged(object sender, ColorEventArgs e)
+        private void Tile_ColorChanged(object sender, TileColorEventArgs e)
         {
             switch (e.Color)
             {

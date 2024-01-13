@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,10 @@ namespace Checkers.Model
 {
     public class PieceModel
     {
+        public event EventHandler<PieceHighlightEventArgs> PieceHighlightChanged;
+
+        public PieceColor PieceColor { get; private set; }
+
         public GridPos GridPosition 
         {
             get => _gridPos;
@@ -19,14 +24,15 @@ namespace Checkers.Model
             }
         }
 
-        public PieceColor PieceColor 
+        public bool PieceColorHighlight
         { 
-            get => _pieceColor;
+            get => _pieceColorHighlight;
             set
             {
-                if (!_pieceColor.Equals(value))
+                if (_pieceColorHighlight != value)
                 {
-                    _pieceColor = value;
+                    _pieceColorHighlight = value;
+                    PieceHighlightChanged?.Invoke(this, new PieceHighlightEventArgs(value));
                     //TODO: shoot event when colour is changed.
                 }
             }
@@ -46,13 +52,13 @@ namespace Checkers.Model
         }
 
         private GridPos _gridPos;
-        private PieceColor _pieceColor;
+        private bool _pieceColorHighlight;
         private PieceType _pieceType;
 
         public PieceModel(GridPos gridPosition, PieceColor pieceColor, PieceType type)
         {
             _gridPos = gridPosition;
-            _pieceColor = pieceColor;
+            PieceColor = pieceColor;
             _pieceType = type;
         }
     }

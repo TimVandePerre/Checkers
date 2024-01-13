@@ -3,6 +3,7 @@
     public enum PieceColor
     {
         Dark,
-        Light
+        Light,
+        Highlight
     }
 }

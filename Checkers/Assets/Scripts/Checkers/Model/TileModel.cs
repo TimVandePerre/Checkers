@@ -4,8 +4,7 @@ namespace Checkers.Model
 {
     public class TileModel
     {
-        public event EventHandler<System.EventArgs> PositionClicked;
-        public event EventHandler<ColorEventArgs> ColorChanged;
+        public event EventHandler<TileColorEventArgs> ColorChanged;
         public TileColor Color 
         { 
             get => _color;
@@ -14,7 +13,7 @@ namespace Checkers.Model
                 if(value != _color)
                 {
                     _color = value;
-                    ColorChanged?.Invoke(this, new ColorEventArgs(value));
+                    ColorChanged?.Invoke(this, new TileColorEventArgs(value));
                 }
             }
         }
@@ -22,15 +21,17 @@ namespace Checkers.Model
         public GridPos Pos { get; }
 
         private TileColor _color;
+        private readonly BoardModel _board;
 
-        public TileModel(GridPos pos)
+        public TileModel(GridPos pos, BoardModel board)
         {
             Pos = pos;
+            _board = board;
         }
 
         public void TileClicked()
         {
-            PositionClicked?.Invoke(this, System.EventArgs.Empty);
+            _board.TileClicked(Pos);
         }
     }
 }

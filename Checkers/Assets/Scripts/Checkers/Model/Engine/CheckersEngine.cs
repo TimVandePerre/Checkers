@@ -11,14 +11,28 @@ namespace Checkers.Model.Engine
         private readonly BoardModel _board;
 
         private PieceColor _startingPiece;
+        private PieceModel _selectedPiece;
 
         public CheckersEngine(BoardModel board, PieceColor startingPlayer)
         {
             _board = board;
+            _board.PositionClicked += _board_PositionClicked;
             _startingPiece = startingPlayer;
 
 
             InitializeBoard();
+        }
+
+        private void _board_PositionClicked(object sender, TileModelEventArgs e)
+        {
+            e.TileModel.Color = TileColor.Highlight;
+
+            PieceModel piece = _board.GetPieceOnPos(e.TileModel.Pos);
+
+            if(piece != null )
+            {
+                piece.PieceColorHighlight = true;
+            }
         }
 
         private void InitializeBoard()
