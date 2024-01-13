@@ -10,29 +10,36 @@ namespace Checkers.Model.Engine
     {
         private readonly BoardModel _board;
 
-        private PieceColor _startingPiece;
+        private PieceColor _CurrentPlayerColor;
         private PieceModel _selectedPiece;
 
         public CheckersEngine(BoardModel board, PieceColor startingPlayer)
         {
             _board = board;
             _board.PositionClicked += _board_PositionClicked;
-            _startingPiece = startingPlayer;
+            _CurrentPlayerColor = startingPlayer;
 
 
             InitializeBoard();
         }
 
-        private void _board_PositionClicked(object sender, TileModelEventArgs e)
+        private void _board_PositionClicked(object sender, PositionEventArgs e)
         {
-            e.TileModel.Color = TileColor.Highlight;
-
-            PieceModel piece = _board.GetPieceOnPos(e.TileModel.Pos);
-
-            if(piece != null )
+            foreach(PieceModel pieces in _board.Pieces.Values)
             {
-                piece.PieceColorHighlight = true;
+                _board.HighlightPiece(pieces.GridPosition, false);
             }
+
+            _selectedPiece = null;
+
+            PieceModel piece = _board.GetPieceOnPos(e.GridPos);
+
+            if (piece == null) return;
+
+            _selectedPiece = piece;
+
+            _board.HighlightPiece(e.GridPos, true);
+
         }
 
         private void InitializeBoard()

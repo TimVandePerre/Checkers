@@ -13,9 +13,9 @@ namespace Checkers.Model
 
     public class TileColorEventArgs : EventArgs
     {
-        public TileColor Color { get; }
+        public bool Color { get; }
 
-        public TileColorEventArgs(TileColor color)
+        public TileColorEventArgs( bool color)
         {
             Color = color;
         }
@@ -31,10 +31,10 @@ namespace Checkers.Model
         }
     }
 
-    public class PieceHighlightEventArgs : EventArgs
+    public class PieceColorEventArgs : EventArgs
     {
         public bool PieceColor { get; }
-        public PieceHighlightEventArgs(bool Highlight)
+        public PieceColorEventArgs(bool Highlight)
         {
             PieceColor = Highlight;
         }

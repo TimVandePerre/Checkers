@@ -8,21 +8,23 @@ namespace Checkers.Model
     {
         [SerializeField] private Renderer _renderer;
         [SerializeField] private Material _highlightMaterial;
-        private Material _defaultMaterial;
+
+        public PieceModel PieceModel { get; private set; }
 
         public PieceColor Color;
         public PieceType Type;
-        public PieceModel PieceModel { get; private set; }
+
+        private Material _defaultMaterial;
         public void SetModel(PieceModel model)
         {
             PieceModel = model;
-            _defaultMaterial = _renderer.material;
 
+            _defaultMaterial = _renderer.material;
             //TODO: subscribe to the events
-            PieceModel.PieceHighlightChanged += PieceModel_PieceHighlightChanged;
+            PieceModel.PieceColorChanged += PieceModel_PieceColorChanged;
         }
 
-        private void PieceModel_PieceHighlightChanged(object sender, PieceHighlightEventArgs e)
+        private void PieceModel_PieceColorChanged(object sender, PieceColorEventArgs e)
         {
             if (e.PieceColor)
             {

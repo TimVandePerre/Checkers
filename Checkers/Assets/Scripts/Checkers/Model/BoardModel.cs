@@ -7,7 +7,7 @@ namespace Checkers.Model
     public class BoardModel
     {
         public event EventHandler<PieceEventArgs> PieceSpawned;
-        public event EventHandler<TileModelEventArgs> PositionClicked;
+        public event EventHandler<PositionEventArgs> PositionClicked;
 
 
         public int Row { get; }
@@ -39,8 +39,13 @@ namespace Checkers.Model
 
         public void TileClicked(GridPos pos)
         {
+            PositionClicked?.Invoke(this, new PositionEventArgs(pos));
+        }
+
+        public void HighlightTile(GridPos pos, bool Highlight)
+        {
             TileModel tile = GetTileOnPos(pos);
-            PositionClicked?.Invoke(this, new TileModelEventArgs(tile));
+            tile.Highlight = Highlight;
         }
 
         public PieceModel AddPiece(GridPos pos, PieceColor pieceColor, PieceType pieceType)
@@ -56,6 +61,12 @@ namespace Checkers.Model
         {
             PieceModel piece = Pieces.GetValueOrDefault(pos);
             return piece;
+        }
+
+        public void HighlightPiece (GridPos pos, bool Highlight)
+        {
+            PieceModel piece = GetPieceOnPos(pos);
+            piece.PieceColorHighlight = Highlight;
         }
     }
 }

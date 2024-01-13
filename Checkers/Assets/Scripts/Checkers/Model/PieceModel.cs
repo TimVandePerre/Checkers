@@ -7,10 +7,7 @@ namespace Checkers.Model
 {
     public class PieceModel
     {
-        public event EventHandler<PieceHighlightEventArgs> PieceHighlightChanged;
-
-        public PieceColor PieceColor { get; private set; }
-
+        public event EventHandler<PieceColorEventArgs> PieceColorChanged;
         public GridPos GridPosition 
         {
             get => _gridPos;
@@ -32,7 +29,7 @@ namespace Checkers.Model
                 if (_pieceColorHighlight != value)
                 {
                     _pieceColorHighlight = value;
-                    PieceHighlightChanged?.Invoke(this, new PieceHighlightEventArgs(value));
+                    PieceColorChanged?.Invoke(this, new PieceColorEventArgs(value));
                     //TODO: shoot event when colour is changed.
                 }
             }
@@ -52,6 +49,7 @@ namespace Checkers.Model
         }
 
         private GridPos _gridPos;
+        public PieceColor PieceColor { get; private set; }
         private bool _pieceColorHighlight;
         private PieceType _pieceType;
 

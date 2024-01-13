@@ -27,15 +27,11 @@ namespace Checkers.View
 
         private void Tile_ColorChanged(object sender, TileColorEventArgs e)
         {
-            switch (e.Color)
+            if (e.Color)
             {
-                case TileColor.Base:
-                    _renderer.sharedMaterial = _default;
-                    break;
-                case TileColor.Highlight:
-                    _renderer.sharedMaterial = _highlight;
-                    break;
+                _renderer.sharedMaterial = _highlight;
             }
+            else _renderer.sharedMaterial = _default;
         }
     }
 }

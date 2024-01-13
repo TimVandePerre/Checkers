@@ -5,14 +5,14 @@ namespace Checkers.Model
     public class TileModel
     {
         public event EventHandler<TileColorEventArgs> ColorChanged;
-        public TileColor Color 
+        public bool Highlight 
         { 
-            get => _color;
+            get => _highlight;
             set
             {
-                if(value != _color)
+                if(value != _highlight)
                 {
-                    _color = value;
+                    _highlight = value;
                     ColorChanged?.Invoke(this, new TileColorEventArgs(value));
                 }
             }
@@ -20,7 +20,7 @@ namespace Checkers.Model
 
         public GridPos Pos { get; }
 
-        private TileColor _color;
+        private bool _highlight;
         private readonly BoardModel _board;
 
         public TileModel(GridPos pos, BoardModel board)
