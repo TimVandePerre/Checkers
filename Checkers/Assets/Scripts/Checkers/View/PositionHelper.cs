@@ -18,7 +18,16 @@ namespace Checkers.View
         public static Vector3 GridToWorldPos( GridPos gridPos, BoardModel board )
         {
             float x = gridPos.X - (board.Row / 2) + 0.5f;
-            float y = 0.5f;
+            float y = 0.3f;
+            float z = gridPos.Y - (board.Column / 2) + 0.5f;
+
+            return new Vector3(x, y, z);
+        }
+
+        public static Vector3 TileGridToWorldPos(GridPos gridPos, BoardModel board)
+        {
+            float x = gridPos.X - (board.Row / 2) + 0.5f;
+            float y = 0;
             float z = gridPos.Y - (board.Column / 2) + 0.5f;
 
             return new Vector3(x, y, z);

@@ -6,7 +6,7 @@ namespace Checkers.Model
 {
     public class BoardModel
     {
-
+        public event EventHandler<PieceEventArgs> PieceSpawned;
         public int Row { get; }
         public int Column { get; }
 
@@ -40,6 +40,7 @@ namespace Checkers.Model
             PieceModel piece = new PieceModel(pos, pieceColor, pieceType);
             //TODO: sub to all events.
 
+            PieceSpawned?.Invoke(this, new PieceEventArgs(piece));
             Pieces.Add(pos, piece);
             return piece;
         }

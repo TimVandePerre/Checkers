@@ -1,5 +1,6 @@
 ﻿using Checkers.Model;
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Checkers.View
@@ -10,7 +11,7 @@ namespace Checkers.View
         public int _columns;
         public BoardModel _boardModel { get; private set; }
 
-        [SerializeField] GameObject _pawnPiece;
+        [SerializeField] private PieceView[] _prefabPiece;
 
         private void Awake()
         {
@@ -19,12 +20,12 @@ namespace Checkers.View
 
             CreateBoardModel();
             SetBoardTiles();
-            SetBoardPieces();
         }
 
         public void CreateBoardModel()
         {
             _boardModel = new BoardModel(_rows, _columns);
+            _boardModel.PieceSpawned += _boardModel_PieceSpawned;
         }
 
         private void SetBoardTiles()
@@ -41,16 +42,15 @@ namespace Checkers.View
             }
         }
 
-        private void SetBoardPieces()
+        private void _boardModel_PieceSpawned(object sender, PieceEventArgs e)
         {
-            //TODO: add all pieces based on the Rows and Collumns
-            GridPos gridPos = new GridPos(0, 0);
+            PieceModel pieceModel = e.Piece;
 
-            PieceModel pieceModel = _boardModel.AddPiece(gridPos, PieceColor.Dark, PieceType.Pawn);
+            PieceView pieceView = _prefabPiece.Where(p=> p.Color == pieceModel.PieceColor && p.Type == pieceModel.PieceType).FirstOrDefault();
 
-            GameObject piece = GameObject.Instantiate(_pawnPiece);
-            piece.transform.position = PositionHelper.GridToWorldPos(gridPos, _boardModel);
-            piece.GetComponent<PieceView>().SetModel(pieceModel);
+            GameObject spawnedObject = GameObject.Instantiate(pieceView.gameObject, PositionHelper.GridToWorldPos(pieceModel.GridPosition, _boardModel), pieceView.transform.rotation);
+
+            spawnedObject.GetComponent<PieceView>().SetModel(pieceModel);
         }
     }
 }

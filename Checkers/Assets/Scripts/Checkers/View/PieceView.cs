@@ -9,6 +9,8 @@ namespace Checkers.Model
         [SerializeField] private Renderer _renderer;
         [SerializeField] private Material _highlightMaterial;
 
+        public PieceColor Color;
+        public PieceType Type;
         public PieceModel PieceModel { get; private set; }
         public void SetModel(PieceModel model)
         {

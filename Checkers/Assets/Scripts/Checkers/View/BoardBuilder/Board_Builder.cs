@@ -29,11 +29,11 @@ public class Board_Builder : MonoBehaviour
                 {
                     case 0:
                         GameObject prefabBlack = GameObject.Instantiate(BlackTile, ParentObject.transform);
-                        prefabBlack.transform.localPosition = PositionHelper.GridToWorldPos(new GridPos(i, j), boardView._boardModel);
+                        prefabBlack.transform.localPosition = PositionHelper.TileGridToWorldPos(new GridPos(i, j), boardView._boardModel);
                         break;
                     case 1:
                         GameObject prefabwhite = GameObject.Instantiate (WhiteTile, ParentObject.transform);
-                        prefabwhite.transform.localPosition = PositionHelper.GridToWorldPos(new GridPos(i, j), boardView._boardModel);
+                        prefabwhite.transform.localPosition = PositionHelper.TileGridToWorldPos(new GridPos(i, j), boardView._boardModel);
                         break;
                 }
             }

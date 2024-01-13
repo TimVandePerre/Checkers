@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 68df9360b970d254b948bfd60e1f5e4a, type: 2}
+    - target: {fileID: 4149269349081669023, guid: c046afcaaf79667478c8b2a98ba62c37, type: 3}
+      propertyPath: Color
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6232652633425011420, guid: c046afcaaf79667478c8b2a98ba62c37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -54,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8420286391242644301, guid: c046afcaaf79667478c8b2a98ba62c37, type: 3}
       propertyPath: m_Name
-      value: Piece_Base Variant
+      value: Piece_Light
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
