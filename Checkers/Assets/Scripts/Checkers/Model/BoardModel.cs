@@ -7,14 +7,15 @@ namespace Checkers.Model
     public class BoardModel
     {
         public event EventHandler<PieceEventArgs> PieceSpawned;
+        public event EventHandler<PieceEventArgs> PieceRemoved;
         public event EventHandler<PositionEventArgs> PositionClicked;
 
 
         public int Row { get; }
         public int Column { get; }
 
-        public Dictionary<GridPos,TileModel> Tiles = new Dictionary<GridPos,TileModel>();
-        public Dictionary<GridPos, PieceModel> Pieces = new Dictionary<GridPos, PieceModel>();
+        public Dictionary<GridPos,TileModel> Tiles = new();
+        public Dictionary<GridPos, PieceModel> Pieces = new();
 
         public BoardModel(int row, int column)
         {
@@ -24,7 +25,7 @@ namespace Checkers.Model
 
         public TileModel AddTile(GridPos pos)
         {
-            TileModel tile = new TileModel(pos, this);
+            TileModel tile = new (pos, this);
 
             Tiles.Add(pos, tile);
 
@@ -50,13 +51,19 @@ namespace Checkers.Model
 
         public PieceModel AddPiece(GridPos pos, PieceColor pieceColor, PieceType pieceType)
         {
-            PieceModel piece = new PieceModel(pos, pieceColor, pieceType);
+            PieceModel piece = new (pos, pieceColor, pieceType, this);
 
             PieceSpawned?.Invoke(this, new PieceEventArgs(piece));
             Pieces.Add(pos, piece);
             return piece;
         }
 
+        public void RemovePiece(GridPos pos)
+        {
+            PieceModel piece = GetPieceOnPos(pos);
+            Pieces.Remove(pos);
+            piece.RemovePiece();
+        }
         public PieceModel GetPieceOnPos(GridPos pos)
         {
             PieceModel piece = Pieces.GetValueOrDefault(pos);
@@ -67,6 +74,19 @@ namespace Checkers.Model
         {
             PieceModel piece = GetPieceOnPos(pos);
             piece.PieceColorHighlight = Highlight;
+        }
+
+        public void UpgradePiece (GridPos pos, PieceType type)
+        {
+            PieceModel piece = GetPieceOnPos(pos);
+            piece.PieceType = type;
+        }
+
+        public void MovePieceToPos(PieceModel piece, GridPos destinationPos)
+        {
+            Pieces.Remove(piece.GridPosition);
+            piece.GridPosition = destinationPos;
+            Pieces.Add(destinationPos, piece);
         }
     }
 }

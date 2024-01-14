@@ -1,0 +1,17 @@
+{
+    "name": "ChekersTester",
+    "rootNamespace": "",
+    "references": [
+        "GUID:2b4b1a9afa10cd84ab23f4c454f01ecf",
+        "GUID:c6023a4f0ba6e20478bed46dfe83ebcd"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

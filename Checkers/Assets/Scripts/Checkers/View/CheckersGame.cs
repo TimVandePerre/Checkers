@@ -15,7 +15,7 @@ namespace Checkers.View
         {
             BoardView board = FindObjectOfType<BoardView>();
 
-            _engine = new CheckersEngine(board._boardModel, PieceColor.Dark);
+            _engine = new CheckersEngine(board.BoardModel, PieceColor.Dark);
         }
     }
 }

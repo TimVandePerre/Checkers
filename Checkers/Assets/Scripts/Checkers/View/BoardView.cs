@@ -9,7 +9,7 @@ namespace Checkers.View
     {
         public int _rows;
         public int _columns;
-        public BoardModel _boardModel { get; private set; }
+        public BoardModel BoardModel { get; private set; }
 
         [SerializeField] private PieceView[] _prefabPiece;
 
@@ -24,8 +24,8 @@ namespace Checkers.View
 
         public void CreateBoardModel()
         {
-            _boardModel = new BoardModel(_rows, _columns);
-            _boardModel.PieceSpawned += _boardModel_PieceSpawned;
+            BoardModel = new BoardModel(_rows, _columns);
+            BoardModel.PieceSpawned += BoardModel_PieceSpawned;
         }
 
         private void SetBoardTiles()
@@ -34,21 +34,21 @@ namespace Checkers.View
 
             foreach (TileView tileView in tileViews)
             {
-                GridPos gridPos = PositionHelper.WorldToGridPos(tileView.transform.position, _boardModel);
+                GridPos gridPos = PositionHelper.WorldToGridPos(tileView.transform.position, BoardModel);
 
-                TileModel tileModel = _boardModel.AddTile(gridPos);
+                TileModel tileModel = BoardModel.AddTile(gridPos);
 
                 tileView.SetModel(tileModel);
             }
         }
 
-        private void _boardModel_PieceSpawned(object sender, PieceEventArgs e)
+        private void BoardModel_PieceSpawned(object sender, PieceEventArgs e)
         {
             PieceModel pieceModel = e.Piece;
 
             PieceView pieceView = _prefabPiece.Where(p=> p.Color == pieceModel.PieceColor && p.Type == pieceModel.PieceType).FirstOrDefault();
 
-            GameObject spawnedObject = GameObject.Instantiate(pieceView.gameObject, PositionHelper.GridToWorldPos(pieceModel.GridPosition, _boardModel), pieceView.transform.rotation);
+            GameObject spawnedObject = GameObject.Instantiate(pieceView.gameObject, PositionHelper.GridToWorldPos(pieceModel.GridPosition, BoardModel), pieceView.transform.rotation);
 
             spawnedObject.GetComponent<PieceView>().SetModel(pieceModel);
         }

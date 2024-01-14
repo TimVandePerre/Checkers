@@ -7,7 +7,10 @@ namespace Checkers.Model
 {
     public class PieceModel
     {
+        public event EventHandler<PositionEventArgs> PositionChanged;
         public event EventHandler<PieceColorEventArgs> PieceColorChanged;
+        public event EventHandler<EventArgs> PieceUpgrade;
+        public event EventHandler<EventArgs> PieceRemoved;
         public GridPos GridPosition 
         {
             get => _gridPos;
@@ -16,7 +19,7 @@ namespace Checkers.Model
                 if(!_gridPos.Equals(value))
                 {
                     _gridPos = value;
-                    //TODO: shoot event when position is changed.
+                    PositionChanged?.Invoke(this, new PositionEventArgs(value));
                 }
             }
         }
@@ -30,7 +33,6 @@ namespace Checkers.Model
                 {
                     _pieceColorHighlight = value;
                     PieceColorChanged?.Invoke(this, new PieceColorEventArgs(value));
-                    //TODO: shoot event when colour is changed.
                 }
             }
         }
@@ -43,21 +45,29 @@ namespace Checkers.Model
                 if(_pieceType != value)
                 {
                     _pieceType = value;
-                    //TODO: shoot event when type is changed.
+                    PieceUpgrade?.Invoke(this, new EventArgs());
                 }
             }
         }
 
-        private GridPos _gridPos;
         public PieceColor PieceColor { get; private set; }
+        public readonly BoardModel _board;
+
+        private GridPos _gridPos;
         private bool _pieceColorHighlight;
         private PieceType _pieceType;
 
-        public PieceModel(GridPos gridPosition, PieceColor pieceColor, PieceType type)
+        public PieceModel(GridPos gridPosition, PieceColor pieceColor, PieceType type, BoardModel board)
         {
             _gridPos = gridPosition;
             PieceColor = pieceColor;
             _pieceType = type;
+            _board = board;
+        }
+
+        public void RemovePiece()
+        {
+            PieceRemoved?.Invoke(this, new EventArgs());
         }
     }
 }
